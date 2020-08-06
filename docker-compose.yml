@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+
+  auth-app:
+    build:
+      context: ./auth-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - task-rabbit-clone-docker-network
+
+  mongodb:
+    image: mongo
+    networks:
+      - task-rabbit-clone-docker-network
+
+networks:
+  task-rabbit-clone-docker-network:
+    driver: bridge
